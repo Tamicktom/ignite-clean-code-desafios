@@ -1,19 +1,19 @@
 import { useState } from "react";
 
 import { Footer } from "./footer";
+import { Header } from "./header";
 
 export function App() {
   const [todos, setTodos] = useState<string[]>([])
 
+  function handleCreateNewTodo() {
+    setTodos([...todos, `New todo ${todos.length + 1}`])
+  }
+
   return (
     <div>
-      <header>
-        <h1>My new innovate to-do list!</h1>
 
-        <button onClick={() => { }}>
-          Add new todo
-        </button>
-      </header>
+      <Header onCreateNewTodo={handleCreateNewTodo} />
 
       <main>
         <ul>
