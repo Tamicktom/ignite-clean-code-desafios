@@ -36,21 +36,11 @@ class Pix implements PaymentMethod {
 }
 
 class CalculateOrderDiscount {
-  public execute(amount: number, paymentMethod: string): number {
-    if (paymentMethod === "billet") {
-      return amount * 0.05;
-    }
-
-    if (paymentMethod === "creditCard") {
-      return amount * 0.10;
-    }
-
-    if (paymentMethod === "pix") {
-      return amount * 0.15;
-    }
-
-    return 0;
+  public execute(amount: number, paymentMethod: PaymentMethod): number {
+    return paymentMethod.getDiscountAmount(amount);
   }
 }
 
+const calculateOrderDiscount = new CalculateOrderDiscount();
 
+console.log(calculateOrderDiscount.execute(100, new Billet()));
